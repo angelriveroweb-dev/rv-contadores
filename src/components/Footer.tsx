@@ -1,41 +1,58 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
+    /* const [isHovered, setIsHovered] = useState(false); */
+
     return (
-        <footer className="py-20 bg-charcoal border-t border-white/10 bg-black text-center md:text-left">
-            <div className="container mx-auto px-6">
-                <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-12">
+        <footer id="contact" className="bg-ivory text-obsidian pb-12 pt-32 px-4 md:px-8 relative overflow-hidden rounded-t-[3rem]">
+            <div className="container mx-auto flex flex-col justify-between min-h-[70vh]">
 
-                    {/* Brand */}
-                    <div className="flex flex-col items-center md:items-start">
-                        <span className="font-serif text-2xl text-ivory tracking-tight">Contadores RV</span>
-                        <span className="font-sans text-xs text-gold tracking-[0.3em] uppercase mt-2">Consultoría Fiscal</span>
+                {/* Top Section */}
+                <div className="flex flex-col md:flex-row justify-between items-start border-b border-obsidian/10 pb-12">
+                    <div className="max-w-md">
+                        <h3 className="font-sans text-sm uppercase tracking-widest mb-4 opacity-60">Oficinas</h3>
+                        <p className="font-sans text-xl md:text-2xl leading-relaxed">
+                            Calle Xicoténcatl 907 <br />
+                            Zona Centro <br />
+                            Saltillo, Coah. México
+                        </p>
+                        <a href="tel:8444142244" className="block mt-4 text-xl hover:text-gold transition-colors">(844) 414 2244</a>
                     </div>
 
-                    {/* Contact Info */}
-                    <div className="flex flex-col items-center md:items-start space-y-4 font-sans text-sm text-gray-400">
-                        <p>
-                            <span className="block text-xs uppercase tracking-wider text-gray-600 mb-1">Ubicación</span>
-                            Calle Xicoténcatl 907, Zona Centro, Saltillo, Coahuila
-                        </p>
-                        <p>
-                            <span className="block text-xs uppercase tracking-wider text-gray-600 mb-1">Contacto</span>
-                            (844) 414 2244 · <a href="mailto:contacto@rvcontadores.com.mx" className="hover:text-gold transition-colors">contacto@rvcontadores.com.mx</a>
-                        </p>
-                    </div>
-
-                    {/* Socials */}
-                    <div className="flex gap-6">
-                        <a href="#" className="font-sans text-xs uppercase tracking-widest text-gray-500 hover:text-gold transition-colors">Facebook</a>
-                        <a href="#" className="font-sans text-xs uppercase tracking-widest text-gray-500 hover:text-gold transition-colors">Twitter</a>
+                    <div className="mt-12 md:mt-0 flex flex-col items-end text-right">
+                        <h3 className="font-sans text-sm uppercase tracking-widest mb-4 opacity-60">Social</h3>
+                        <div className="flex flex-col gap-2 text-xl">
+                            <a href="#" className="hover:opacity-50 transition-opacity">Facebook</a>
+                            <a href="#" className="hover:opacity-50 transition-opacity">Twitter / X</a>
+                            <a href="#" className="hover:opacity-50 transition-opacity">LinkedIn</a>
+                        </div>
                     </div>
                 </div>
 
-                <div className="mt-20 pt-8 border-t border-white/5 text-center">
-                    <p className="font-sans text-xs text-gray-700">
-                        © {new Date().getFullYear()} Contadores RV. Todos los derechos reservados.
-                    </p>
+                {/* Giant CTA */}
+                <div className="flex-1 flex items-center justify-center py-24">
+                    <motion.a
+                        href="mailto:contacto@rvcontadores.com.mx"
+                        className="relative z-10 block cursor-pointer group"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                    >
+                        <div className="font-sans font-medium text-[8vw] md:text-[7rem] lg:text-[9rem] leading-none tracking-tighter text-obsidian group-hover:text-gold transition-colors duration-500">
+                            contacto@
+                            <br />
+                            rvcontadores
+                            <span className="text-gray-300 group-hover:text-gold/50 transition-colors">.com.mx</span>
+                        </div>
+                    </motion.a>
                 </div>
+
+                {/* Bottom */}
+                <div className="flex flex-col md:flex-row justify-between items-end opacity-40 text-sm font-sans">
+                    <span>© 2024 Contadores RV. All Rights Reserved.</span>
+                    <span>Design Inspired by Wonjyou.</span>
+                </div>
+
             </div>
         </footer>
     );

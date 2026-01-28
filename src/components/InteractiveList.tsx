@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
 
 const SERVICES = [
     {
@@ -43,88 +42,79 @@ const InteractiveList: React.FC = () => {
             className="py-32 bg-obsidian relative overflow-hidden"
             onMouseMove={handleMouseMove}
         >
-            <div className="container mx-auto px-6 relative z-20">
-                <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-24 flex flex-col md:flex-row justify-between items-end border-b border-white/10 pb-8"
-                >
-                    <h2 className="font-serif text-5xl md:text-7xl text-ivory">
-                        Áreas de <br /><span className="text-gold italic">Experiencia</span>
-                    </h2>
-                    <p className="text-gray-400 font-sans max-w-sm text-right mt-6 md:mt-0">
-                        Soluciones integrales diseñadas para proteger y maximizar su patrimonio.
-                    </p>
-                </motion.div>
+            <div className="container mx-auto px-4 md:px-8 relative z-20">
 
-                <div className="flex flex-col">
+                {/* Header Minimalista */}
+                <div className="flex flex-col mb-24 items-start">
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-4 ml-1">Nuestra Expertise</span>
+                    <h2 className="font-sans text-5xl md:text-7xl font-light text-ivory tracking-tight">
+                        Soluciones <span className="text-gray-600">Integrales</span>
+                    </h2>
+                </div>
+
+                <div className="flex flex-col w-full">
                     {SERVICES.map((service, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
-                            className="group border-b border-white/10 py-12 cursor-pointer transition-colors duration-500 hover:border-gold/30"
+                            className="group py-12 cursor-pointer relative border-b border-white/10 hover:border-white/30 transition-colors duration-500"
                         >
-                            <div className="flex flex-col md:flex-row md:items-baseline gap-6 md:gap-24 relative z-10 w-full">
-                                <span className="text-gold/50 font-sans text-sm tracking-widest">{service.id}</span>
-
-                                <div className="flex-1">
-                                    <h3 className={`text-4xl md:text-6xl transition-all duration-500 ${hoveredIndex === index ? 'font-serif italic text-gold translate-x-4' : 'font-serif text-white'}`}>
+                            <div className="flex flex-col md:flex-row items-baseline justify-between gap-8 relative z-10 w-full px-2">
+                                <div className="flex items-baseline gap-12 w-full md:w-auto">
+                                    <span className="text-gray-600 font-mono text-xs md:text-sm">0{index + 1}</span>
+                                    <h3 className={`text-3xl md:text-5xl lg:text-6xl font-sans tracking-tight transition-all duration-500 ${hoveredIndex === index ? 'text-ivory translate-x-4' : 'text-gray-400'}`}>
                                         {service.title}
                                     </h3>
                                 </div>
 
-                                <div className={`transition-transform duration-500 ${hoveredIndex === index ? 'rotate-45 translate-x-2 text-gold' : 'text-gray-500'}`}>
-                                    <ArrowUpRight size={40} />
+                                {/* Description Text appearing on hover in desktop layout or always visible/accordion styles could be used. 
+                    Matching Wonjyou style: keep it clean, maybe just show description on click or subtle reveal. 
+                    We will use a subtle text reveal on the right side. */}
+                                <div className="hidden md:block w-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                    <p className="text-sm text-gray-400 font-light leading-relaxed">
+                                        {service.description}
+                                    </p>
                                 </div>
                             </div>
 
-                            <AnimatePresence>
-                                {hoveredIndex === index && (
-                                    <motion.div
-                                        initial={{ height: 0, opacity: 0 }}
-                                        animate={{ height: "auto", opacity: 1 }}
-                                        exit={{ height: 0, opacity: 0 }}
-                                        className="overflow-hidden md:pl-[6rem]" // Align with title start
-                                    >
-                                        <p className="mt-8 font-sans text-gray-300 text-lg leading-relaxed max-w-3xl">
-                                            {service.description}
-                                        </p>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
+                            {/* Mobile Description */}
+                            <div className="md:hidden mt-4 overflow-hidden">
+                                <p className="text-sm text-gray-500 leading-relaxed pl-16">
+                                    {service.description}
+                                </p>
+                            </div>
+
                         </motion.div>
                     ))}
                 </div>
             </div>
 
-            {/* Floating Image Cursor Follower */}
+            {/* Floating Image Cursor Follower - Styled to be more minimal/architectural */}
             <AnimatePresence>
                 {hoveredIndex !== null && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.5, rotate: -5 }}
+                        initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
                         animate={{
                             opacity: 1,
                             scale: 1,
-                            rotate: 0,
-                            x: mousePos.x - 200,
-                            y: mousePos.y - 150
+                            filter: "blur(0px)",
+                            x: mousePos.x - 150,
+                            y: mousePos.y - 200
                         }}
-                        exit={{ opacity: 0, scale: 0.5, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                        className="fixed top-0 left-0 w-[450px] h-[320px] pointer-events-none z-50 hidden md:block overflow-hidden"
+                        exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+                        transition={{ type: "tween", ease: "backOut", duration: 0.4 }}
+                        className="fixed top-0 left-0 w-[300px] h-[400px] pointer-events-none z-50 hidden md:block" // Portrait orientation for editorial look
                     >
-                        <div className="w-full h-full relative">
-                            <div className="absolute inset-0 border border-gold/20 z-20"></div>
+                        <div className="w-full h-full relative overflow-hidden bg-gray-900">
                             <img
                                 src={SERVICES[hoveredIndex].img}
                                 alt="Service Preview"
-                                className="w-full h-full object-cover grayscale brightness-75 contrast-125"
+                                className="w-full h-full object-cover grayscale opacity-80"
                             />
                         </div>
                     </motion.div>
