@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
+import Lenis from 'lenis'; // Import Lenis
+import Navbar from './components/Navbar'; // Import Navbar
 import Hero from './components/Hero';
 import InteractiveList from './components/InteractiveList';
 import AboutUs from './components/AboutUs';
@@ -8,11 +10,12 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 
 const CustomCursor = () => {
+  // ... (Keep existing Logic)
   const [isHovered, setIsHovered] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 300 }; // Adjusted for smooth feel
+  const springConfig = { damping: 25, stiffness: 300 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -24,13 +27,12 @@ const CustomCursor = () => {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      // Check for clickable elements
       if (
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
         target.closest('a') ||
         target.closest('button') ||
-        target.dataset.cursor === 'hover' || // support explicit hover
+        target.dataset.cursor === 'hover' ||
         window.getComputedStyle(target).cursor === 'pointer'
       ) {
         setIsHovered(true);
@@ -40,7 +42,7 @@ const CustomCursor = () => {
     };
 
     window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseover', handleMouseOver); // Use mouseover to detect hover on elements
+    window.addEventListener('mouseover', handleMouseOver);
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
@@ -67,6 +69,26 @@ const CustomCursor = () => {
 };
 
 function App() {
+  useEffect(() => {
+    // Initialize Lenis Smooth Scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // Integrate with Framer Motion if needed, but basic RAF loop is sufficient for global scroll
+  }, []);
+
   return (
     <div className="bg-obsidian min-h-screen text-ivory selection:bg-gold selection:text-black font-sans relative">
       {/* Noise Overlay */}
@@ -78,13 +100,15 @@ function App() {
 
       <CustomCursor />
 
+      <Navbar />
+
       <main className="relative z-10">
-        <Hero />
-        <AboutUs />
-        <InteractiveList />
+        <div id="hero"><Hero /></div>
+        <div id="about"><AboutUs /></div>
+        <div id="services"><InteractiveList /></div>
         <WhyUs />
         <Testimonials />
-        <Footer />
+        <div id="footer"><Footer /></div>
       </main>
     </div>
   );
