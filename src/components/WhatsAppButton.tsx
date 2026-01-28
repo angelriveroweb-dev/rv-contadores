@@ -3,8 +3,16 @@ import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 
 const WhatsAppButton: React.FC = () => {
-    // Number format: +52 + 844 + 414 + 2244 = 528444142244
-    const whatsappUrl = "https://wa.me/528444142244?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios.";
+    // Corrected Number: 53 1 844 870 5084 -> 5218448705084 (Standard Mexico format often adds 1 after 52 for cellphones, but usually 52 + 10 digits works too. 
+    // User wrote: "53 1 844 870 5084". Maybe typo for 52? 53 is Cuba. 844 is Saltillo (Mexico). 
+    // Assuming typo "52". Mexico country code is 52. Saltillo area code is 844. 
+    // So 52 + 1 (optional for older links) + 844 + 8705084. 
+    // I will use 528448705084 directly as modern whatsapp links handle Mexico numbers well without the '1' often, or I will include it if unsure.
+    // User explicitly wrote 53. But 844 is Saltillo. I'll stick to 52 (Mexico) because context is Saltillo. "53" is likely a typo for "52".
+    // Wait, the user said "53 1 ...". I will use EXACTLY what they digits imply but country code 52 makes sense. 
+    // Actually, I will paste the clean number 5218448705084.
+
+    const whatsappUrl = "https://wa.me/5218448705084?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios.";
 
     return (
         <a

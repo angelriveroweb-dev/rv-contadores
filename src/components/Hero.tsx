@@ -26,23 +26,24 @@ const Hero: React.FC = () => {
     return (
         <section className="relative w-full h-screen overflow-hidden flex flex-col justify-center bg-obsidian pt-24 md:pt-0">
 
-            {/* Background - kept subtle and dark */}
+            {/* Background - Increased opacity/overlay for legibility */}
             <motion.div
                 style={{ y, opacity }}
-                className="absolute inset-0 z-0 opacity-40 select-none"
+                className="absolute inset-0 z-0 bg-black"
             >
+                <div className="absolute inset-0 bg-black/80 z-10"></div> {/* Solid overlay */}
                 {/* Abstract/Architectural B&W image */}
                 <img
                     src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
                     alt="Background Texture"
-                    className="w-full h-full object-cover grayscale brightness-50"
+                    className="w-full h-full object-cover grayscale opacity-30 brightness-75 mix-blend-overlay"
                 />
             </motion.div>
 
-            <div className="container mx-auto px-4 md:px-8 relative z-10 flex flex-col h-full justify-center">
+            <div className="container mx-auto px-4 md:px-8 relative z-20 flex flex-col h-full justify-center">
 
                 {/* Wonjyou Style: Giant Typography */}
-                <div className="flex flex-col font-sans font-medium uppercase leading-[0.8] tracking-tighter text-ivory mix-blend-difference select-none">
+                <div className="flex flex-col font-sans font-medium uppercase leading-[0.8] tracking-tighter text-white mix-blend-normal select-none relative z-30">
                     <div className="text-[12vw] md:text-[8rem] lg:text-[11rem] xl:text-[13rem] flex items-center overflow-hidden">
                         <MaskText delay={0.1}>Precisión</MaskText>
                     </div>
@@ -52,12 +53,12 @@ const Hero: React.FC = () => {
                             initial={{ scale: 0, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.8, duration: 0.8 }}
-                            className="w-[10vw] h-[10vw] md:w-32 md:h-32 rounded-full border border-gold/50 flex items-center justify-center mt-2 md:mt-6"
+                            className="w-[10vw] h-[10vw] md:w-32 md:h-32 rounded-full border border-white/30 flex items-center justify-center mt-2 md:mt-6 bg-black/50 backdrop-blur-sm"
                         >
                             <span className="text-xs md:text-sm font-serif italic text-gold lowercase tracking-normal text-center px-2">e. 2024</span>
                         </motion.div>
                     </div>
-                    <div className="text-[12vw] md:text-[8rem] lg:text-[11rem] xl:text-[13rem] text-gold/80 flex items-center overflow-hidden">
+                    <div className="text-[12vw] md:text-[8rem] lg:text-[11rem] xl:text-[13rem] text-gray-400 flex items-center overflow-hidden">
                         <MaskText delay={0.3}>Global</MaskText>
                     </div>
                 </div>
@@ -69,7 +70,7 @@ const Hero: React.FC = () => {
                         transition={{ delay: 1, duration: 1 }}
                         className="max-w-md"
                     >
-                        <p className="font-sans text-sm md:text-base text-gray-400 font-light tracking-wide leading-relaxed">
+                        <p className="font-sans text-sm md:text-base text-gray-300 font-light tracking-wide leading-relaxed">
                             Consultoría Fiscal y Contable para el Mercado Moderno. <br />
                             Transformamos la incertidumbre en ventaja competitiva.
                         </p>
@@ -81,7 +82,7 @@ const Hero: React.FC = () => {
                         transition={{ delay: 1.2, duration: 1 }}
                         className="hidden md:block"
                     >
-                        <span className="font-serif italic text-gold text-lg">Scroll to explore</span>
+                        <span className="font-serif italic text-white/50 text-lg">Scroll to explore</span>
                     </motion.div>
                 </div>
 

@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Footer: React.FC = () => {
-    /* const [isHovered, setIsHovered] = useState(false); */
+// Separate WhatsApp Button Component logic included here to ensure single source of truth if preferred, 
+// but since I created a separate file, I will just update ONLY the footer here. 
+// Actually, the user asked to FIX the footer email responsivness.
 
+const Footer: React.FC = () => {
     return (
-        <footer id="contact" className="bg-ivory text-obsidian pb-12 pt-32 px-4 md:px-8 relative overflow-hidden rounded-t-[3rem]">
+        <footer id="contact" className="bg-ivory text-obsidian pb-12 pt-32 px-4 md:px-8 relative overflow-hidden rounded-t-[3rem] z-20">
             <div className="container mx-auto flex flex-col justify-between min-h-[70vh]">
 
                 {/* Top Section */}
@@ -17,7 +19,7 @@ const Footer: React.FC = () => {
                             Zona Centro <br />
                             Saltillo, Coah. México
                         </p>
-                        <a href="tel:8444142244" className="block mt-4 text-xl hover:text-gold transition-colors">(844) 414 2244</a>
+                        <a href="tel:5318448705084" className="block mt-4 text-xl hover:text-gold transition-colors">(844) 870 5084</a>
                     </div>
 
                     <div className="mt-12 md:mt-0 flex flex-col items-end text-right">
@@ -30,19 +32,16 @@ const Footer: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Giant CTA */}
+                {/* Giant CTA - Responsive Fix */}
                 <div className="flex-1 flex items-center justify-center py-24">
                     <motion.a
                         href="mailto:contacto@rvcontadores.com.mx"
-                        className="relative z-10 block cursor-pointer group"
-                        whileHover={{ scale: 1.05 }}
+                        className="relative z-10 block cursor-pointer group w-full text-center"
+                        whileHover={{ scale: 1.02 }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
                     >
-                        <div className="font-sans font-medium text-[8vw] md:text-[7rem] lg:text-[9rem] leading-none tracking-tighter text-obsidian group-hover:text-gold transition-colors duration-500">
-                            contacto@
-                            <br />
-                            rvcontadores
-                            <span className="text-gray-300 group-hover:text-gold/50 transition-colors">.com.mx</span>
+                        <div className="font-sans font-medium text-[9vw] lg:text-[10rem] leading-[0.9] tracking-tighter text-obsidian group-hover:text-gold transition-colors duration-500 break-words w-full">
+                            contacto@<br className="md:hidden" />rvcontadores<span className="text-gray-300 group-hover:text-gold/50 transition-colors text-[5vw] lg:text-[5rem] block md:inline">.com.mx</span>
                         </div>
                     </motion.a>
                 </div>

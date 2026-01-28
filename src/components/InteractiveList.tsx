@@ -37,22 +37,23 @@ const InteractiveList: React.FC = () => {
     };
 
     return (
+        // Added z-10 and relative to ensure it slides OVER the sticky AboutUs section
         <section
             id="services"
-            className="py-32 bg-obsidian relative overflow-hidden"
+            className="py-32 bg-black relative overflow-hidden z-10 rounded-t-[3rem] shadow-2xl"
             onMouseMove={handleMouseMove}
         >
             <div className="container mx-auto px-4 md:px-8 relative z-20">
 
                 {/* Header Minimalista */}
                 <div className="flex flex-col mb-24 items-start">
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-gray-500 mb-4 ml-1">Nuestra Expertise</span>
-                    <h2 className="font-sans text-5xl md:text-7xl font-light text-ivory tracking-tight">
-                        Soluciones <span className="text-gray-600">Integrales</span>
+                    <span className="text-xs font-bold uppercase tracking-[0.3em] text-white/60 mb-4 ml-1">Nuestra Expertise</span>
+                    <h2 className="font-sans text-6xl md:text-8xl font-medium text-white tracking-tighter">
+                        Soluciones <span className="text-gray-400">Integrales</span>
                     </h2>
                 </div>
 
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full border-t border-white/20">
                     {SERVICES.map((service, index) => (
                         <motion.div
                             key={index}
@@ -62,29 +63,27 @@ const InteractiveList: React.FC = () => {
                             transition={{ delay: index * 0.1 }}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
-                            className="group py-12 cursor-pointer relative border-b border-white/10 hover:border-white/30 transition-colors duration-500"
+                            className="group py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-colors duration-500"
                         >
                             <div className="flex flex-col md:flex-row items-baseline justify-between gap-8 relative z-10 w-full px-2">
                                 <div className="flex items-baseline gap-12 w-full md:w-auto">
-                                    <span className="text-gray-600 font-mono text-xs md:text-sm">0{index + 1}</span>
-                                    <h3 className={`text-3xl md:text-5xl lg:text-6xl font-sans tracking-tight transition-all duration-500 ${hoveredIndex === index ? 'text-ivory translate-x-4' : 'text-gray-400'}`}>
+                                    <span className="text-white/50 font-mono text-sm">0{index + 1}</span>
+                                    <h3 className={`text-3xl md:text-5xl lg:text-7xl font-sans tracking-tight font-medium transition-all duration-500 ${hoveredIndex === index ? 'text-white translate-x-4' : 'text-gray-400'}`}>
                                         {service.title}
                                     </h3>
                                 </div>
 
-                                {/* Description Text appearing on hover in desktop layout or always visible/accordion styles could be used. 
-                    Matching Wonjyou style: keep it clean, maybe just show description on click or subtle reveal. 
-                    We will use a subtle text reveal on the right side. */}
+                                {/* Description Text appearing on hover in desktop layout */}
                                 <div className="hidden md:block w-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <p className="text-sm text-gray-400 font-light leading-relaxed">
+                                    <p className="text-base text-gray-200 font-light leading-relaxed">
                                         {service.description}
                                     </p>
                                 </div>
                             </div>
 
-                            {/* Mobile Description */}
-                            <div className="md:hidden mt-4 overflow-hidden">
-                                <p className="text-sm text-gray-500 leading-relaxed pl-16">
+                            {/* Mobile Description (Always visible on mobile for accessibility) */}
+                            <div className="md:hidden mt-6 overflow-hidden">
+                                <p className="text-base text-gray-300 leading-relaxed pl-0 opacity-80">
                                     {service.description}
                                 </p>
                             </div>
@@ -94,7 +93,7 @@ const InteractiveList: React.FC = () => {
                 </div>
             </div>
 
-            {/* Floating Image Cursor Follower - Styled to be more minimal/architectural */}
+            {/* Floating Image Cursor Follower */}
             <AnimatePresence>
                 {hoveredIndex !== null && (
                     <motion.div
@@ -108,13 +107,13 @@ const InteractiveList: React.FC = () => {
                         }}
                         exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
                         transition={{ type: "tween", ease: "backOut", duration: 0.4 }}
-                        className="fixed top-0 left-0 w-[300px] h-[400px] pointer-events-none z-50 hidden md:block" // Portrait orientation for editorial look
+                        className="fixed top-0 left-0 w-[300px] h-[400px] pointer-events-none z-50 hidden md:block"
                     >
-                        <div className="w-full h-full relative overflow-hidden bg-gray-900">
+                        <div className="w-full h-full relative overflow-hidden bg-gray-900 border border-white/10">
                             <img
                                 src={SERVICES[hoveredIndex].img}
                                 alt="Service Preview"
-                                className="w-full h-full object-cover grayscale opacity-80"
+                                className="w-full h-full object-cover grayscale opacity-90 contrast-125"
                             />
                         </div>
                     </motion.div>

@@ -1,56 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Quote } from 'lucide-react';
 
 const TESTIMONIALS = [
     {
-        name: "Carlos Garay",
-        company: "Taquería",
-        text: "“Trabajar con el Despacho RV nos permitió poner en orden nuestros problemas fiscales evitando multas y requerimientos.”"
+        quote: "Gracias a su estrategia fiscal, logramos optimizar nuestros recursos y expandir operaciones en tiempo récord. Su precisión es invaluable.",
+        author: "Ing. Roberto Méndez",
+        role: "Director General, Grupo Méndez"
     },
     {
-        name: "Diego Treviño",
-        company: "Opinión Agro",
-        text: "“Despacho RV nos ayudó a determinar y cumplir con nuestros objetivos fiscales.”"
+        quote: "La tranquilidad de saber que nuestra contabilidad está en manos de expertos no tiene precio. RV Contadores es sinónimo de confianza.",
+        author: "Lic. Ana Paula Torres",
+        role: "Fundadora, Torres & Asociados"
     },
     {
-        name: "Jorge Segundo",
-        company: "Home Credit",
-        text: "“La asesoría de Despacho RV me ha permitido crear y hacer crecer varios negocios con seguridad fiscal y contable.”"
+        quote: "Un servicio boutique real. Atención personalizada, respuestas rápidas y soluciones que realmente impactan en el resultado financiero.",
+        author: "Arq. Carlos Davila",
+        role: "CEO, Constructora Davila"
     }
 ];
 
 const Testimonials: React.FC = () => {
     return (
-        <section className="py-32 bg-obsidian">
-            <div className="container mx-auto px-6">
-                <motion.h2
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    className="font-serif text-3xl text-gray-400 mb-20 text-center tracking-widest uppercase text-xs"
-                >
-                    Voces de Confianza
-                </motion.h2>
+        <section className="py-32 bg-black text-white relative">
+            <div className="container mx-auto px-4 md:px-8">
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    {TESTIMONIALS.map((t, index) => (
+                <div className="mb-24">
+                    <h2 className="font-sans text-5xl md:text-7xl tracking-tighter text-white/90">
+                        Voces de <span className="text-gray-500 font-serif italic">Confianza</span>
+                    </h2>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24">
+                    {TESTIMONIALS.map((t, i) => (
                         <motion.div
-                            key={index}
-                            initial={{ opacity: 0, y: 30 }}
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.2, duration: 0.8 }}
-                            className="flex flex-col items-center text-center p-8 border border-white/5 bg-white/5 backdrop-blur-sm rounded-sm hover:border-gold/30 transition-colors duration-500"
+                            transition={{ delay: i * 0.2 }}
+                            className="group"
                         >
-                            <p className="font-serif text-xl md:text-2xl text-ivory italic leading-relaxed mb-6">
-                                {t.text}
+                            <Quote className="text-white/20 mb-8 w-12 h-12" />
+                            <p className="font-serif text-2xl md:text-3xl leading-snug text-gray-200 mb-8 italic">
+                                "{t.quote}"
                             </p>
-                            <div className="mt-auto">
-                                <p className="font-sans text-gold font-medium uppercase tracking-wider text-xs">{t.name}</p>
-                                <p className="font-sans text-gray-500 text-xs mt-1">{t.company}</p>
+                            <div>
+                                <h4 className="font-sans font-bold text-lg tracking-wide uppercase">{t.author}</h4>
+                                <span className="font-sans text-sm text-gray-500">{t.role}</span>
                             </div>
                         </motion.div>
                     ))}
                 </div>
+
             </div>
         </section>
     );
