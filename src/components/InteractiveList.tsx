@@ -6,25 +6,25 @@ const SERVICES = [
     {
         id: "01",
         title: "Planeación Fiscal",
-        description: "Colocamos a su negocio en la mejor situación que la ley prevea, con el propósito de optimizar recursos y cumplir correctamente con los requerimientos fiscales. Aprovechamos todos los beneficios que ofrece la ley para evitar pagos innecesarios de impuestos.",
+        description: "Tiene como finalidad colocar a su negocio en la mejor situación que la ley prevea, optimizando recursos y cumpliendo con requerimientos. La planeación en sí misma no implica un riesgo, sino por el contrario, lo evita: da seguridad fijando el rumbo con certidumbre y aprovechando beneficios legales.",
         img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2670&auto=format&fit=crop"
     },
     {
         id: "02",
         title: "Impuestos",
-        description: "Realizamos, revisamos y presentamos oportunamente impuestos federales y estatales, incluyendo ISR, IVA, facturación electrónica, cálculo de IMSS, nómina y cualquier otra carga tributaria aplicable.",
+        description: "Hacemos, revisamos y presentamos oportunamente impuestos federales y estatales. Desde ISR e IVA, hasta Facturación Electrónica, cálculos de IMSS, Nómina y cualquier otra carga tributaria. Su contabilidad, exacta y puntual.",
         img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2670&auto=format&fit=crop"
     },
     {
         id: "03",
         title: "Trámites Fiscales",
-        description: "Gestión integral de trámites ante instituciones gubernamentales: RFC, cambios de domicilio fiscal, actualizaciones, aclaraciones, devoluciones, compensaciones y declaraciones informativas.",
+        description: "Gestión integral ante instituciones gubernamentales: Inscripción en el RFC, aclaración de multas y requerimientos, devoluciones, compensaciones, cambios de domicilio y actualizaciones de información.",
         img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2670&auto=format&fit=crop"
     },
     {
         id: "04",
         title: "Asesoría Emprendedores",
-        description: "Acompañamos su negocio desde la idea hasta la puesta en marcha, abarcando factibilidad económica, operativa y legal, estrategia fiscal, implementación de procesos y arranque operativo.",
+        description: "Asesoría integral desde la idea hasta la puesta en marcha. Abarcamos factibilidad económica, operativa y legal, estrategia fiscal e implementación de procesos para que su negocio nazca sólido.",
         img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2670&auto=format&fit=crop"
     }
 ];
