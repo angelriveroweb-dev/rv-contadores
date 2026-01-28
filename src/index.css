@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-obsidian: #050505;
+  --color-ivory: #F5F5F5;
+  --color-gold: #D4AF37;
+  
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Manrope", sans-serif;
+
+  --animate-shimmer: shimmer 2s linear infinite;
+
+  @keyframes shimmer {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
+  }
+}
+
+body {
+  background-color: var(--color-obsidian);
+  color: var(--color-ivory);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  cursor: none; /* Custom cursor everywhere */
+}
+
+/* Scrollbar hiding */
+::-webkit-scrollbar {
+  width: 5px;
+  background: var(--color-obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-obsidian);
+}
