@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 import Lenis from 'lenis'; // Import Lenis
 import Navbar from './components/Navbar'; // Import Navbar
+import WhatsAppButton from './components/WhatsAppButton';
 import Hero from './components/Hero';
 import InteractiveList from './components/InteractiveList';
 import AboutUs from './components/AboutUs';
@@ -99,7 +100,7 @@ function App() {
       ></div>
 
       <CustomCursor />
-
+      <WhatsAppButton />
       <Navbar />
 
       <main className="relative z-10">
