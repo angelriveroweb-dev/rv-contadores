@@ -7,8 +7,8 @@ import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
     return (
-        <footer id="contact" className="bg-ivory text-obsidian pb-12 pt-32 px-4 md:px-8 relative overflow-hidden rounded-t-[3rem] z-20">
-            <div className="container mx-auto flex flex-col justify-between min-h-[70vh]">
+        <footer id="contact" className="fixed bottom-0 left-0 w-full h-[80vh] min-h-[600px] bg-ivory text-obsidian pb-12 pt-32 px-4 md:px-8 -z-10 flex flex-col justify-end">
+            <div className="container mx-auto flex flex-col justify-between h-full">
 
                 {/* Top Section */}
                 <div className="flex flex-col md:flex-row justify-between items-start border-b border-obsidian/10 pb-12">

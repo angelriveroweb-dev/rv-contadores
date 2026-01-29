@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
-import Lenis from 'lenis'; // Import Lenis
-import Navbar from './components/Navbar'; // Import Navbar
+import Lenis from 'lenis';
+import Navbar from './components/Navbar';
 import WhatsAppButton from './components/WhatsAppButton';
 import Hero from './components/Hero';
 import InteractiveList from './components/InteractiveList';
@@ -11,7 +11,6 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 
 const CustomCursor = () => {
-  // ... (Keep existing Logic)
   const [isHovered, setIsHovered] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -70,8 +69,10 @@ const CustomCursor = () => {
 };
 
 function App() {
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [footerHeight, setFooterHeight] = useState(0);
+
   useEffect(() => {
-    // Initialize Lenis Smooth Scroll
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -87,30 +88,48 @@ function App() {
 
     requestAnimationFrame(raf);
 
-    // Integrate with Framer Motion if needed, but basic RAF loop is sufficient for global scroll
+    // Resize Observer for Footer
+    if (footerRef.current) {
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          setFooterHeight(entry.contentRect.height);
+        }
+      });
+      resizeObserver.observe(footerRef.current);
+      return () => resizeObserver.disconnect();
+    }
   }, []);
 
   return (
     <div className="bg-obsidian min-h-screen text-ivory selection:bg-gold selection:text-black font-sans relative">
-      {/* Noise Overlay */}
+      <CustomCursor />
+
+      {/* Noise Overlay - Fixed Z-50 */}
       <div className="fixed inset-0 opacity-[0.07] pointer-events-none z-[50]"
         style={{
           backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22 opacity=%221%22/%3E%3C/svg%3E')"
         }}
       ></div>
 
-      <CustomCursor />
       <WhatsAppButton />
       <Navbar />
 
-      <main className="relative z-10">
+      {/* Content Wrapper. Needs z-10 and background to cover fixed footer. Margin-bottom allows scrolling to reveal footer. */}
+      <main
+        className="relative z-10 bg-obsidian shadow-2xl"
+        style={{ marginBottom: footerHeight }}
+      >
         <div id="hero"><Hero /></div>
         <div id="about"><AboutUs /></div>
         <div id="services"><InteractiveList /></div>
         <WhyUs />
         <Testimonials />
-        <div id="footer"><Footer /></div>
       </main>
+
+      {/* Fixed Footer */}
+      <div ref={footerRef} className="fixed bottom-0 left-0 w-full -z-10 bg-ivory">
+        <Footer />
+      </div>
     </div>
   );
 }

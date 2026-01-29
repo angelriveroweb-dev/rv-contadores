@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useLayoutEffect } from 'react';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SERVICES = [
     {
@@ -30,15 +33,49 @@ const SERVICES = [
 
 const InteractiveList: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const componentRef = useRef<HTMLElement>(null);
+    const listRef = useRef<HTMLDivElement>(null);
+    const cursorRef = useRef<HTMLDivElement>(null);
+    const xTo = useRef<gsap.QuickToFunc | null>(null);
+    const yTo = useRef<gsap.QuickToFunc | null>(null);
+
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            // Scroll Trigger Animation for List Items
+            const items = gsap.utils.toArray('.service-item');
+
+            gsap.from(items, {
+                scrollTrigger: {
+                    trigger: listRef.current,
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+
+            // Cursor setup
+            if (cursorRef.current) {
+                xTo.current = gsap.quickTo(cursorRef.current, "x", { duration: 0.4, ease: "power3" });
+                yTo.current = gsap.quickTo(cursorRef.current, "y", { duration: 0.4, ease: "power3" });
+            }
+
+        }, componentRef);
+        return () => ctx.revert();
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        setMousePos({ x: e.clientX, y: e.clientY });
+        if (xTo.current && yTo.current) {
+            xTo.current(e.clientX);
+            yTo.current(e.clientY);
+        }
     };
 
     return (
-        // Added z-10 and relative to ensure it slides OVER the sticky AboutUs section
         <section
+            ref={componentRef}
             id="services"
             className="py-32 bg-black relative overflow-hidden z-10 rounded-t-[3rem] shadow-2xl"
             onMouseMove={handleMouseMove}
@@ -53,17 +90,17 @@ const InteractiveList: React.FC = () => {
                     </h2>
                 </div>
 
-                <div className="flex flex-col w-full border-t border-white/20">
+                {/* CSS-only focus effect using group-hover logic on parent */}
+                <div
+                    ref={listRef}
+                    className="flex flex-col w-full border-t border-white/20 group/list"
+                    onMouseLeave={() => setHoveredIndex(null)}
+                >
                     {SERVICES.map((service, index) => (
-                        <motion.div
+                        <div
                             key={index}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
+                            className="service-item group/item py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-all duration-500 hover:!opacity-100 group-hover/list:opacity-40"
                             onMouseEnter={() => setHoveredIndex(index)}
-                            onMouseLeave={() => setHoveredIndex(null)}
-                            className="group py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-colors duration-500"
                         >
                             <div className="flex flex-col md:flex-row items-baseline justify-between gap-8 relative z-10 w-full px-2">
                                 <div className="flex items-baseline gap-12 w-full md:w-auto">
@@ -74,51 +111,48 @@ const InteractiveList: React.FC = () => {
                                 </div>
 
                                 {/* Description Text appearing on hover in desktop layout */}
-                                <div className="hidden md:block w-1/3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                <div className="hidden md:block w-1/3 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500">
                                     <p className="text-base text-gray-200 font-light leading-relaxed">
                                         {service.description}
                                     </p>
                                 </div>
                             </div>
 
-                            {/* Mobile Description (Always visible on mobile for accessibility) */}
+                            {/* Mobile Description */}
                             <div className="md:hidden mt-6 overflow-hidden">
                                 <p className="text-base text-gray-300 leading-relaxed pl-0 opacity-80">
                                     {service.description}
                                 </p>
                             </div>
 
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             </div>
 
-            {/* Floating Image Cursor Follower */}
-            <AnimatePresence>
-                {hoveredIndex !== null && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-                        animate={{
-                            opacity: 1,
-                            scale: 1,
-                            filter: "blur(0px)",
-                            x: mousePos.x - 150,
-                            y: mousePos.y - 200
-                        }}
-                        exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-                        transition={{ type: "tween", ease: "backOut", duration: 0.4 }}
-                        className="fixed top-0 left-0 w-[300px] h-[400px] pointer-events-none z-50 hidden md:block"
-                    >
-                        <div className="w-full h-full relative overflow-hidden bg-gray-900 border border-white/10">
-                            <img
-                                src={SERVICES[hoveredIndex].img}
-                                alt="Service Preview"
-                                className="w-full h-full object-cover grayscale opacity-90 contrast-125"
-                            />
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {/* Floating Image Cursor Follower via GSAP */}
+            <div
+                ref={cursorRef}
+                className="fixed top-0 left-0 w-[300px] h-[400px] pointer-events-none z-50 hidden md:block rounded- overflow-hidden"
+                style={{
+                    transform: 'translate(-50%, -50%) scale(0)',
+                    opacity: 0,
+                    top: 0, left: 0
+                }}
+            >
+                {/* Inner scaler for show/hide effect */}
+                <div
+                    className={`w-full h-full transition-all duration-500 transform ${hoveredIndex !== null ? 'scale-100 opacity-100' : 'scale-75 opacity-0'}`}
+                >
+                    {hoveredIndex !== null && (
+                        <img
+                            src={SERVICES[hoveredIndex].img}
+                            alt="Service Preview"
+                            className="w-full h-full object-cover grayscale opacity-90 contrast-125"
+                        />
+                    )}
+                </div>
+            </div>
         </section>
     );
 };
