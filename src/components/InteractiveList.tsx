@@ -60,6 +60,11 @@ const InteractiveList: React.FC = () => {
                 });
             });
 
+            mm.add("(max-width: 767px)", () => {
+                // Force clear any GSAP-set opacity on mobile so CSS takes over
+                gsap.set(items, { clearProps: "opacity" });
+            });
+
             // Cursor setup
             if (cursorRef.current) {
                 xTo.current = gsap.quickTo(cursorRef.current, "x", { duration: 0.4, ease: "power3" });
@@ -81,7 +86,7 @@ const InteractiveList: React.FC = () => {
         <section
             ref={componentRef}
             id="services"
-            className="py-32 bg-black relative overflow-hidden z-10 rounded-t-[3rem] shadow-2xl"
+            className="py-32 bg-black relative overflow-hidden z-10 rounded-t-[3rem]"
             onMouseMove={handleMouseMove}
         >
             <div className="container mx-auto px-4 md:px-8 relative z-20">
