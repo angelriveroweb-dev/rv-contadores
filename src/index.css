@@ -44,3 +44,8 @@ body {
   background-color: var(--color-gold);
   color: var(--color-obsidian);
 }
+
+@utility container {
+  max-width: 1280px;
+  margin-inline: auto;
+}

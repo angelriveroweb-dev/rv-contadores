@@ -35,7 +35,7 @@ const AboutUs: React.FC = () => {
     return (
         <section ref={containerRef} id="about" className="bg-ivory text-obsidian relative z-0">
             {/* Desktop Layout: Split Pin */}
-            <div ref={triggerRef} className="hidden lg:flex min-h-[150vh] relative">
+            <div ref={triggerRef} className="hidden lg:flex min-h-[150vh] relative max-w-[1280px] mx-auto">
                 {/* Left (Pinned) */}
                 <div className="w-1/2 h-screen flex flex-col justify-center px-16 pin-target sticky top-0">
                     <span className="font-sans text-sm uppercase tracking-[0.2em] text-gray-400 mb-8 block">

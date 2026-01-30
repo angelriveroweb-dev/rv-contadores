@@ -8,6 +8,7 @@ import InteractiveList from './components/InteractiveList';
 import AboutUs from './components/AboutUs';
 import WhyUs from './components/WhyUs';
 import Testimonials from './components/Testimonials';
+import CTA from './components/CTA';
 import Footer from './components/Footer';
 
 const CustomCursor = () => {
@@ -69,9 +70,10 @@ const CustomCursor = () => {
 };
 
 function App() {
-  const footerRef = useRef<HTMLDivElement>(null);
-  const [footerHeight, setFooterHeight] = useState(0);
+  // const footerRef = useRef<HTMLDivElement>(null);
+  // const [footerHeight, setFooterHeight] = useState(0);
 
+  /* Removed footer resize observer logic but Keeping Lenis */
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -87,17 +89,6 @@ function App() {
     }
 
     requestAnimationFrame(raf);
-
-    // Resize Observer for Footer
-    if (footerRef.current) {
-      const resizeObserver = new ResizeObserver((entries) => {
-        for (const entry of entries) {
-          setFooterHeight(entry.contentRect.height);
-        }
-      });
-      resizeObserver.observe(footerRef.current);
-      return () => resizeObserver.disconnect();
-    }
   }, []);
 
   return (
@@ -114,22 +105,6 @@ function App() {
       <WhatsAppButton />
       <Navbar />
 
-      {/* Content Wrapper. Needs z-10 and background to cover fixed footer. Margin-bottom allows scrolling to reveal footer. */}
-      <main
-        className="relative z-10 bg-obsidian shadow-2xl"
-        style={{ marginBottom: footerHeight }}
-      >
-        <div id="hero"><Hero /></div>
-        <div id="about"><AboutUs /></div>
-        <div id="services"><InteractiveList /></div>
-        <WhyUs />
-        <Testimonials />
-      </main>
-
-      {/* Fixed Footer */}
-      <div ref={footerRef} className="fixed bottom-0 left-0 w-full -z-10 bg-ivory">
-        <Footer />
-      </div>
     </div>
   );
 }

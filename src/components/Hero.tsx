@@ -79,9 +79,9 @@ const Hero: React.FC = () => {
             <div className="absolute inset-0 z-0 bg-black">
                 <div className="absolute inset-0 bg-black/80 z-10"></div>
                 <img
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1506787497326-c2736dde1bef?q=80&w=392&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Background Texture"
-                    className="w-full h-full object-cover grayscale opacity-30 brightness-75 mix-blend-overlay"
+                    className="w-full h-full object-cover grayscale opacity-40 brightness-50 mix-blend-overlay"
                 />
             </div>
 
