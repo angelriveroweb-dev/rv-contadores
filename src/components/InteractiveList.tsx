@@ -99,7 +99,7 @@ const InteractiveList: React.FC = () => {
                     {SERVICES.map((service, index) => (
                         <div
                             key={index}
-                            className="service-item group/item py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-all duration-500 hover:!opacity-100 group-hover/list:opacity-40"
+                            className="service-item group/item py-12 md:py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-all duration-500 hover:!opacity-100 md:group-hover/list:opacity-40"
                             onMouseEnter={() => setHoveredIndex(index)}
                         >
                             <div className="flex flex-col md:flex-row items-baseline justify-between gap-8 relative z-10 w-full px-2">
@@ -119,8 +119,8 @@ const InteractiveList: React.FC = () => {
                             </div>
 
                             {/* Mobile Description */}
-                            <div className="md:hidden mt-6 overflow-hidden">
-                                <p className="text-base text-gray-300 leading-relaxed pl-0 opacity-80">
+                            <div className="md:hidden mt-4 overflow-hidden">
+                                <p className="text-sm text-gray-300 leading-relaxed font-light">
                                     {service.description}
                                 </p>
                             </div>
