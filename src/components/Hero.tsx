@@ -24,6 +24,7 @@ const Hero: React.FC = () => {
                 ...split3.lines || []
             ];
 
+            // Animate Text Lines
             const mm = gsap.matchMedia();
 
             mm.add("(min-width: 768px)", () => {
@@ -39,7 +40,7 @@ const Hero: React.FC = () => {
             });
 
             mm.add("(max-width: 767px)", () => {
-                // Mobile - Simple fade in
+                // Mobile
                 gsap.from(lines, {
                     y: 20,
                     opacity: 0,
@@ -48,6 +49,31 @@ const Hero: React.FC = () => {
                     ease: "power2.out"
                 });
             });
+
+            // Restore missing animations for Description & CTA
+            gsap.to(".hero-text", {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                delay: 0.8,
+                ease: "power3.out"
+            });
+
+            gsap.to(".hero-scroll", {
+                opacity: 1,
+                duration: 1,
+                delay: 1.2,
+                ease: "power3.out"
+            });
+
+            gsap.to(".hero-badge", {
+                scale: 1,
+                opacity: 1,
+                duration: 1,
+                delay: 0.5,
+                ease: "elastic.out(1, 0.5)"
+            });
+
 
         }, componentRef);
 
@@ -71,11 +97,11 @@ const Hero: React.FC = () => {
 
                 {/* Typography */}
                 <div className="flex flex-col font-sans font-medium uppercase leading-[0.85] tracking-tighter text-white mix-blend-normal select-none relative z-30">
-                    <div ref={textRef1} className="text-[12vw] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] flex items-center">
+                    <div ref={textRef1} className="text-[11vw] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] flex items-center">
                         Precisión
                     </div>
                     <div className="flex items-center gap-4 md:gap-8 overflow-hidden">
-                        <div ref={textRef2} className="text-[12vw] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem]">
+                        <div ref={textRef2} className="text-[11vw] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem]">
                             Financiera
                         </div>
                         {/* Animated Badge */}
@@ -83,12 +109,13 @@ const Hero: React.FC = () => {
                             <span className="text-[0.6rem] md:text-xs lg:text-sm font-serif italic text-gold lowercase tracking-normal text-center px-2">e. 2024</span>
                         </div>
                     </div>
-                    <div ref={textRef3} className="text-[12vw] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] text-gray-400 flex items-center">
+                    <div ref={textRef3} className="text-[11vw] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] text-gray-400 flex items-center">
                         Global
                     </div>
                 </div>
 
                 {/* Creative Separator & Bottom Section */}
+                {/* z-index 50 ensures it's above everything else */}
                 <div className="mt-12 md:mt-24 flex flex-col md:flex-row justify-between items-end border-t border-white/10 pt-8 relative z-50 pb-24">
 
                     {/* Decorative Vertical Line */}
