@@ -13,16 +13,16 @@ const CTA: React.FC = () => {
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             // Parallax or Reveal Effect for Text
+            // Simple Reveal Effect for Text (Static position after reveal)
             gsap.from(textRef.current, {
                 scrollTrigger: {
                     trigger: containerRef.current,
                     start: "top 80%",
-                    end: "bottom center",
-                    scrub: 1,
                 },
-                y: 100,
-                opacity: 0.5,
-                duration: 1
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
             });
 
             // Button Magnetic Effect (Simplified for now with Scale)
@@ -50,7 +50,7 @@ const CTA: React.FC = () => {
 
             <div className="container mx-auto px-4 md:px-8 max-w-[1280px] relative z-10 flex flex-col items-center text-center">
 
-                <div className="overflow-hidden mb-12">
+                <div className="overflow-hidden mb-12 p-4 md:p-8">
                     <h2 ref={textRef} className="font-sans text-[12vw] md:text-[8rem] leading-[0.85] tracking-tighter font-medium uppercase text-obsidian mix-blend-darken">
                         Listo Para <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-obsidian to-gray-600">Empezar?</span>
