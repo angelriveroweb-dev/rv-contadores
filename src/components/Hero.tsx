@@ -106,16 +106,31 @@ const Hero: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="mt-12 md:mt-24 flex flex-col md:flex-row justify-between items-end border-t border-white/20 pt-6">
-                    <div className="max-w-md hero-text opacity-0 translate-y-4">
-                        <p className="font-sans text-sm md:text-base text-gray-300 font-light tracking-wide leading-relaxed">
-                            Consultoría Fiscal y Contable para el Mercado Moderno. <br />
-                            Transformamos la incertidumbre en ventaja competitiva.
+                {/* Creative Separator & Bottom Section */}
+                <div className="mt-12 md:mt-16 flex flex-col md:flex-row justify-between items-end border-t border-white/10 pt-8 relative">
+
+                    {/* Decorative Vertical Line */}
+                    <div className="absolute top-0 left-0 w-px h-16 bg-gradient-to-b from-gold to-transparent hidden md:block"></div>
+
+                    <div className="flex flex-col gap-8 max-w-xl hero-text opacity-0 translate-y-4">
+                        <p className="font-sans text-lg md:text-xl text-gray-300 font-light tracking-wide leading-relaxed">
+                            Estrategias fiscales de precisión para empresas que desafían el status quo.
+                            <span className="block mt-2 text-white/80">Potenciamos su patrimonio con una arquitectura financiera blindada.</span>
                         </p>
+
+                        <button className="group w-fit flex items-center gap-4 text-white hover:text-gold transition-colors duration-300">
+                            <span className="uppercase tracking-[0.2em] text-sm border-b border-white/30 pb-1 group-hover:border-gold transition-colors">Descubrir Potencial</span>
+                            <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center group-hover:border-gold group-hover:bg-gold/10 transition-all">
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform group-hover:rotate-45 transition-transform duration-300">
+                                    <path d="M1 11L11 1M11 1H3M11 1V9" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                        </button>
                     </div>
 
-                    <div className="hidden md:block hero-scroll opacity-0">
-                        <span className="font-serif italic text-white/50 text-lg">Scroll to explore</span>
+                    <div className="hidden md:flex flex-col items-end gap-2 hero-scroll opacity-0">
+                        <div className="w-px h-12 bg-white/20 mb-2"></div>
+                        <span className="font-serif italic text-white/50 text-sm tracking-wider">Scroll to explore</span>
                     </div>
                 </div>
 
