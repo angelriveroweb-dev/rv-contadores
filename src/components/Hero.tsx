@@ -77,31 +77,31 @@ const Hero: React.FC = () => {
 
             {/* Background */}
             <div className="absolute inset-0 z-0 bg-black">
-                <div className="absolute inset-0 bg-black/80 z-10"></div>
+                <div className="absolute inset-0 bg-black/60 z-10"></div>
                 <img
-                    src="https://images.unsplash.com/photo-1506787497326-c2736dde1bef?q=80&w=392&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src="https://images.unsplash.com/photo-1506787497326-c2736dde1bef?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZpbmFuY2lhbHxlbnwwfHwwfHx8MA%3D%3D"
                     alt="Background Texture"
-                    className="w-full h-full object-cover grayscale opacity-40 brightness-50 mix-blend-overlay"
+                    className="w-full h-full object-cover grayscale opacity-50 brightness-75 mix-blend-overlay"
                 />
             </div>
 
-            <div className="container mx-auto px-4 md:px-8 relative z-20 flex flex-col h-full justify-center">
+            <div className="container mx-auto px-4 md:px-8 relative z-20 flex flex-col h-full justify-center max-w-[1280px]">
 
                 {/* Typography */}
-                <div className="flex flex-col font-sans font-medium uppercase leading-[0.8] tracking-tighter text-white mix-blend-normal select-none relative z-30">
-                    <div ref={textRef1} className="text-[12vw] md:text-[8rem] lg:text-[11rem] xl:text-[13rem] flex items-center">
+                <div className="flex flex-col font-sans font-medium uppercase leading-[0.85] tracking-tighter text-white mix-blend-normal select-none relative z-30">
+                    <div ref={textRef1} className="text-[12vw] md:text-[6rem] lg:text-[7.5rem] xl:text-[9rem] flex items-center">
                         Precisión
                     </div>
                     <div className="flex items-center gap-4 md:gap-8 overflow-hidden">
-                        <div ref={textRef2} className="text-[12vw] md:text-[8rem] lg:text-[11rem] xl:text-[13rem]">
+                        <div ref={textRef2} className="text-[12vw] md:text-[6rem] lg:text-[7.5rem] xl:text-[9rem]">
                             Financiera
                         </div>
                         {/* Animated Badge */}
-                        <div className="hero-badge w-[10vw] h-[10vw] md:w-32 md:h-32 rounded-full border border-white/30 flex items-center justify-center mt-2 md:mt-6 bg-black/50 backdrop-blur-sm opacity-0 scale-0">
-                            <span className="text-xs md:text-sm font-serif italic text-gold lowercase tracking-normal text-center px-2">e. 2024</span>
+                        <div className="hero-badge w-[10vw] h-[10vw] md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full border border-white/30 flex items-center justify-center mt-2 md:mt-4 bg-black/50 backdrop-blur-sm opacity-0 scale-0">
+                            <span className="text-[0.6rem] md:text-xs lg:text-sm font-serif italic text-gold lowercase tracking-normal text-center px-2">e. 2024</span>
                         </div>
                     </div>
-                    <div ref={textRef3} className="text-[12vw] md:text-[8rem] lg:text-[11rem] xl:text-[13rem] text-gray-400 flex items-center">
+                    <div ref={textRef3} className="text-[12vw] md:text-[6rem] lg:text-[7.5rem] xl:text-[9rem] text-gray-400 flex items-center">
                         Global
                     </div>
                 </div>
