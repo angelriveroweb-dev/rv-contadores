@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
                         </div>
                         {/* Animated Badge */}
                         <div className="hero-badge w-[10vw] h-[10vw] md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-full border border-white/30 flex items-center justify-center mt-2 md:mt-4 bg-black/50 backdrop-blur-sm opacity-0 scale-0">
-                            <span className="text-[0.6rem] md:text-xs lg:text-sm font-serif italic text-gold lowercase tracking-normal text-center px-2">e. 2024</span>
+                            <span className="text-[0.6rem] md:text-xs lg:text-sm font-serif italic text-gold lowercase tracking-normal text-center px-2">e. 2026</span>
                         </div>
                     </div>
                     <div ref={textRef3} className="text-[11vw] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] text-gray-400 flex items-center">

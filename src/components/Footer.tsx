@@ -76,7 +76,7 @@ const Footer: React.FC = () => {
 
                 {/* Bottom Bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center mt-24 pt-8 border-t border-white/5 text-sm text-gray-600">
-                    <p>&copy; 2024 Contadores RV. Todos los derechos reservados.</p>
+                    <p>&copy; 2026 Contadores RV. Todos los derechos reservados.</p>
                     <div className="flex gap-8 mt-4 md:mt-0">
                         <a href="#" className="hover:text-gray-400">Privacidad</a>
                         <a href="#" className="hover:text-gray-400">Términos</a>
