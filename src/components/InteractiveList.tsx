@@ -47,12 +47,12 @@ const InteractiveList: React.FC = () => {
             gsap.from(items, {
                 scrollTrigger: {
                     trigger: listRef.current,
-                    start: "top 80%",
+                    start: "top 90%",
                 },
-                y: 50,
+                y: 30, // Reduced movement for faster feeling
                 opacity: 0,
-                duration: 1,
-                stagger: 0.2,
+                duration: 0.8, // Faster animation
+                stagger: 0.1,
                 ease: "power3.out"
             });
 
@@ -99,7 +99,7 @@ const InteractiveList: React.FC = () => {
                     {SERVICES.map((service, index) => (
                         <div
                             key={index}
-                            className="service-item group/item py-12 md:py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-all duration-500 hover:!opacity-100 md:opacity-80 md:group-hover/list:opacity-40"
+                            className="service-item group/item py-12 md:py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-all duration-500 opacity-100 md:opacity-80 md:group-hover/list:opacity-40 md:hover:!opacity-100"
                             onMouseEnter={() => setHoveredIndex(index)}
                         >
                             <div className="flex flex-col md:flex-row items-baseline justify-between gap-8 relative z-10 w-full px-2">
