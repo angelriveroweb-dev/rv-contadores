@@ -99,13 +99,13 @@ const InteractiveList: React.FC = () => {
                     {SERVICES.map((service, index) => (
                         <div
                             key={index}
-                            className="service-item group/item py-12 md:py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-all duration-500 hover:!opacity-100 md:group-hover/list:opacity-40"
+                            className="service-item group/item py-12 md:py-16 cursor-pointer relative border-b border-white/20 hover:border-white transition-all duration-500 hover:!opacity-100 md:opacity-80 md:group-hover/list:opacity-40"
                             onMouseEnter={() => setHoveredIndex(index)}
                         >
                             <div className="flex flex-col md:flex-row items-baseline justify-between gap-8 relative z-10 w-full px-2">
                                 <div className="flex items-baseline gap-12 w-full md:w-auto">
                                     <span className="text-white/50 font-mono text-sm">0{index + 1}</span>
-                                    <h3 className={`text-3xl md:text-5xl lg:text-7xl font-sans tracking-tight font-medium transition-all duration-500 ${hoveredIndex === index ? 'text-white translate-x-4' : 'text-gray-400'}`}>
+                                    <h3 className={`text-3xl md:text-5xl lg:text-7xl font-sans tracking-tight font-medium transition-all duration-500 text-white ${hoveredIndex === index ? 'md:translate-x-4' : 'md:text-gray-400'}`}>
                                         {service.title}
                                     </h3>
                                 </div>
