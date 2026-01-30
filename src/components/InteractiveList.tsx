@@ -44,16 +44,20 @@ const InteractiveList: React.FC = () => {
             // Scroll Trigger Animation for List Items
             const items = gsap.utils.toArray('.service-item');
 
-            gsap.from(items, {
-                scrollTrigger: {
-                    trigger: listRef.current,
-                    start: "top 90%",
-                },
-                y: 30, // Reduced movement for faster feeling
-                opacity: 0,
-                duration: 0.8, // Faster animation
-                stagger: 0.1,
-                ease: "power3.out"
+            const mm = gsap.matchMedia();
+
+            mm.add("(min-width: 768px)", () => {
+                gsap.from(items, {
+                    scrollTrigger: {
+                        trigger: listRef.current,
+                        start: "top 90%",
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power3.out"
+                });
             });
 
             // Cursor setup
