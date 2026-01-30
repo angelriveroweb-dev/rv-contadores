@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
@@ -105,6 +105,16 @@ function App() {
       <WhatsAppButton />
       <Navbar />
 
+      {/* Content Wrapper */}
+      <main className="relative z-10 bg-obsidian shadow-2xl">
+        <div id="hero"><Hero /></div>
+        <div id="about"><AboutUs /></div>
+        <div id="services"><InteractiveList /></div>
+        <WhyUs />
+        <Testimonials />
+        <CTA />
+        <Footer />
+      </main>
     </div>
   );
 }
